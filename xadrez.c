@@ -1,90 +1,71 @@
 #include <stdio.h>
 
 
-//PROGRAMA: SIMULAÇÃO DE MOVIMENTAÇÃO DE PEÇAS DE XADREZ
-//OBJETIVO: Demonstrar o uso de loops (for, while, do-while) e loops aninhados.
+void moverTorre(int n) {
+    if (n > 0) {
+        printf("Direita\n");
+        moverTorre(n - 1); // CHAMADA RECURSIVA
+    }
+}
 
+void moverBispoRecursivo(int n) {
+    if (n > 0) {
+        printf("Cima, Direita\n");
+        moverBispoRecursivo(n - 1);
+    }
+}
+
+void moverRainha(int n) {
+    if (n > 0) {
+        printf("Esquerda\n");
+        moverRainha(n - 1);
+    }
+}
 
 int main() {
-    // DEFINIÇÃO DAS CONSTANTES (INTEIROS)
-    const int MOVIMENTO_TORRE = 5;
-    const int MOVIMENTO_BISPO = 5;
-    const int MOVIMENTO_RAINHA = 8;
-    
-    // CONSTANTES PARA O CAVALO
-    const int CAVALO_VERTICAL = 2;
-    const int CAVALO_HORIZONTAL = 1;
+    // DEFINIÇÃO DAS CONSTANTES DE MOVIMENTO
+    const int CASAS_TORRE = 5;
+    const int CASAS_BISPO = 5;
+    const int CASAS_RAINHA = 8;
 
-    // --- MOVIMENTO DA TORRE (LOOP FOR) ---
+    // --- MOVIMENTO DA TORRE (RECURSIVO) ---
     printf("Movimento da Torre:\n");
-    for (int i = 1; i <= MOVIMENTO_TORRE; i++) {
+    moverTorre(CASAS_TORRE);
+    printf("\n");
+
+    // --- MOVIMENTO DO BISPO (RECURSIVO + ANINHADO) ---
+    printf("Movimento do Bispo:\n");
+    
+    for (int i = 0; i < CASAS_BISPO; i++) {
+        for (int j = 0; j < 1; j++) { 
+            
+            printf("Cima, ");
+        }
         printf("Direita\n");
     }
     printf("\n");
 
-    // --- MOVIMENTO DO BISPO (LOOP WHILE) ---
-    printf("Movimento do Bispo:\n");
-    int contadorBispo = 1;
-    while (contadorBispo <= MOVIMENTO_BISPO) {
-        printf("Cima, Direita\n");
-        contadorBispo++;
-    }
-    printf("\n");
-
-    // --- MOVIMENTO DA RAINHA (LOOP DO-WHILE) ---
+    // --- MOVIMENTO DA RAINHA (RECURSIVO) ---
     printf("Movimento da Rainha:\n");
-    int contadorRainha = 1;
-    do {
-        printf("Esquerda\n");
-        contadorRainha++;
-    } while (contadorRainha <= MOVIMENTO_RAINHA);
+    moverRainha(CASAS_RAINHA);
     printf("\n");
 
-    // --- MOVIMENTO DO CAVALO (LOOPS ANINHADOS) ---
+    // --- MOVIMENTO DO CAVALO (LOOPS COMPLEXOS) ---
     
     printf("Movimento do Cavalo:\n");
 
-    // LOOP EXTERNO 'FOR' CONTROLA A EXECUÇÃO DA MANOBRA EM L
-    for (int i = 0; i < 1; i++) {
-        int passosBaixo = 1;
+    for (int i = 0, j = 0; i < 3; i++) {
         
-        // LOOP INTERNO 'WHILE' EXECUTA AS 2 CASAS PARA BAIXO
-        while (passosBaixo <= CAVALO_VERTICAL) {
-            printf("Baixo\n");
-            passosBaixo++;
+        if (i < 2) {
+            printf("Cima\n");
+            continue; 
         }
         
-        // FINALIZAÇÃO MOVIMENTO 'L'
-        printf("Esquerda\n");
+        while (j < 1) {
+            printf("Direita\n");
+            j++;
+        }
     }
 
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
